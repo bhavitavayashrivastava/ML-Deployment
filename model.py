@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.linear_model import LinearRegression
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
@@ -22,7 +23,7 @@ X['experience'] = X['experience'].apply(lambda x: convert_to_int(x))
 
 y = data.iloc[:, -1]
 
-from sklearn.linear_model import LinearRegression
+
 
 linReg = LinearRegression()
 
@@ -30,6 +31,8 @@ linReg.fit(X, y)
 
 pickle.dump(linReg, open('model.pkl', 'wb'))
 
-model = pickle.load(open('model.pkl', 'rb'))
+#model = pickle.load(open('model.pkl', 'rb'))
 
-print(model.predict([[2, 9, 6]]))
+output = round(float(linReg.predict([[2, 9, 6]])),2)
+
+print(output)
